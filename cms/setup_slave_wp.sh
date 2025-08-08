@@ -20,8 +20,8 @@ EOF
 
 systemctl restart mysql
 
-#echo "Импорт дампа..."
-#mysql -u root -p"${MYSQL_ROOT_PASS}" < /home/toor/dump.sql
+echo "Импорт дампа..."
+mysql -u root -p"${MYSQL_ROOT_PASS}" < /home/toor/dump.sql
 
 echo "Настройка подключения к master..."
 mysql -u root -p"${MYSQL_ROOT_PASS}" <<EOF
