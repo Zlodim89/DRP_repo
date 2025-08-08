@@ -16,10 +16,11 @@ Codname "Fast-restore"
    
 4) Установить пакеты (если не был взят заранее подготовленный VHD с предустановленной системой и пакетами)
    На pr-nginx = apt install -y nginx prometheus-node-exporter
-   На pr-backend-1 = apt install -y prometheus-node-exporter + скрипт mysql/install_mysql.sh (если была установка на чистую ОС)
-   На pr-backend-2 = 
-   На pr-prometheus =
+   На pr-backend-1 = apt install -y  nginx php-fpm php-mysql php-curl php-gd php-xml php-mbstring unzip wget prometheus-node-exporter + скрипт mysql/install_mysql.sh
+   На pr-backend-2 = apt install -y  nginx php-fpm php-mysql php-curl php-gd php-xml php-mbstring unzip wget prometheus-node-exporter + скрипт mysql/install_mysql.sh 
+   На pr-prometheus = 
    
 5) Приступаем к восстановлению конфигурации
-
-6)  
+   1. На pr-nginx запустить configure_nginx.sh
+   2. На pr-backend-1 запустить install_wp_master.sh (если wordpress не установлен) или restore_master_from_backup.sh (если установлен и у нас есть дамп который положили в /home/toor/)
+   3. На pr-backend-2 запустить setup_slave_wp.sh
