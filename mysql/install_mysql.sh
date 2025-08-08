@@ -1,45 +1,34 @@
 #!/bin/bash
 set -e
 
+ROOT_PASS="rootpass"
+
 echo "Установка MySQL 8 на чистую систему..."
 
-# Проверка пользователя
 if [ "$(id -u)" -ne 0 ]; then
-  echo "❌ Скрипт должен быть запущен от root (или через sudo)."
+  echo "Скрипт должен быть запущен от root (или через sudo)."
   exit 1
 fi
 
-# Установка зависимостей
 apt update
 apt install -y wget gnupg lsb-release debconf-utils
 
-# Добавление репозитория MySQL 8
 echo "Добавляем официальный репозиторий MySQL..."
 wget https://dev.mysql.com/get/mysql-apt-config_0.8.29-1_all.deb
+echo "mysql-apt-config mysql-apt-config/select-server select mysql-8.0" | debconf-set-selections
 DEBIAN_FRONTEND=noninteractive dpkg -i mysql-apt-config_0.8.29-1_all.deb
 
-# Обновляем apt и устанавливаем MySQL Server
 apt update
 DEBIAN_FRONTEND=noninteractive apt install -y mysql-server
 
-# Запуск и автозапуск
 systemctl enable mysql
 systemctl start mysql
 
-# Установка root-пароля и удаление ненужного
-echo " Настройка root-пользователя и базовой безопасности..."
-mysql_secure_installation <<EOF
+echo "Меняем метод аутентификации root и задаём пароль..."
 
-y
-rootpass
-rootpass
-y
-y
-y
-y
+mysql -u root <<EOF
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '${ROOT_PASS}';
+FLUSH PRIVILEGES;
 EOF
 
-echo "[*] Установка завершена. Версия MySQL:"
-mysql --version
-
-echo "MySQL установлен и запущен."
+echo "Установка завершена. Root-пароль: ${ROOT_PASS}"
