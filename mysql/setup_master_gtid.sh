@@ -29,6 +29,6 @@ mysqldump --single-transaction --set-gtid-purged=ON -u root -p"${MYSQL_ROOT_PASS
 
 echo "Копирование дампа и файлов WordPress на slave..."
 scp /root/dump.sql toor@192.168.1.242:/home/toor/dump.sql
-rsync -avz /var/www/wordpress/ root@192.168.1.242:/var/www/wordpress/
+rsync -avz /var/www/wordpress/ toor@192.168.1.242:/var/www/wordpress/
 
 echo "Master настроен. Дамп и файлы переданы на slave."
