@@ -24,4 +24,5 @@ Codname "Fast-restore"
    1. На pr-nginx запустить configure_nginx.sh
    2. На pr-backend-1 запустить install_wp_master.sh (если wordpress не установлен) после установки пройти по адресу http://192.168.1.241/ и зваершить настройку
       или restore_master_from_backup.sh (если установлен и у нас есть дамп который положили в /home/toor/)
+      Потом запустить setup_master_gtid.sh для передачи файлов на slave
    3. На pr-backend-2 запустить setup_slave_wp.sh
