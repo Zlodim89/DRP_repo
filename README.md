@@ -10,14 +10,16 @@ Codname "Fast-restore"
    pr-backend-1 = 192.168.1.241
    pr-backend-2 = 192.168.1.242
    pr-prometheus = 192.168.1.243
-  
+
+3) Перед началом восстановления конфигураций  на каждом сервере склонировать репозиторий GIT в домашнюю папку пользователя toor
+   git clone https://github.com/Zlodim89/DRP_repo.git
+   
 4) Установить пакеты (если не был взят заранее подготовленный VHD с предустановленной системой и пакетами)
    На pr-nginx = apt install -y nginx prometheus-node-exporter
-   На pr-backend-1 = 
+   На pr-backend-1 = apt install -y prometheus-node-exporter + скрипт mysql/install_mysql.sh (если была установка на чистую ОС)
    На pr-backend-2 = 
    На pr-prometheus =
    
-5) Перед началом восстановления конфигураций  на каждом сервере склонировать репозиторий GIT в домашнюю папку пользователя toor
-   git clone https://github.com/Zlodim89/DRP_repo.git 
+5) Приступаем к восстановлению конфигурации
 
-7) Приступаем к восстановлению конфигурации 
+6)  
