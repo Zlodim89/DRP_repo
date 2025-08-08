@@ -28,7 +28,7 @@ echo "Создание дампа базы с GTID..."
 mysqldump --single-transaction --set-gtid-purged=ON -u root -p"${MYSQL_ROOT_PASS}" wordpress > /root/dump.sql
 
 echo "Копирование дампа и файлов WordPress на slave..."
-scp /root/dump.sql root@192.168.1.242:/root/dump.sql
+scp /root/dump.sql toor@192.168.1.242:/home/toor/dump.sql
 rsync -avz /var/www/wordpress/ root@192.168.1.242:/var/www/wordpress/
 
 echo "Master настроен. Дамп и файлы переданы на slave."
