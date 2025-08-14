@@ -15,14 +15,12 @@ Codname "Fast-restore"
    git clone https://github.com/Zlodim89/DRP_repo.git
    
 4) Установить пакеты (если не был взят заранее подготовленный VHD с предустановленной системой и пакетами)
-   На pr-nginx = apt install -y nginx prometheus-node-exporter
-   На pr-backend-1 = apt install -y  nginx php-fpm php-mysql php-curl php-gd php-xml php-mbstring unzip wget prometheus-node-exporter + скрипт mysql/install_mysql.sh
-   На pr-backend-2 = apt install -y  nginx php-fpm php-mysql php-curl php-gd php-xml php-mbstring unzip wget prometheus-node-exporter + скрипт mysql/install_mysql.sh 
+   На pr-nginx = sudo apt update && sudo apt install -y nginx prometheus-node-exporter filebeat (последний ставить через dpkg -i путем копирования файла filebeat-8.19.1-amd64.deb если нет возможности скачать по быстрому каналу с зеркала на yandex)
+   На pr-backend-1 = apt install -y  nginx php-fpm php-mysql php-curl php-gd php-xml php-mbstring unzip wget prometheus-node-exporter + скрипт mysql/
+   На pr-backend-2 = apt install -y  nginx  prometheus-node-exporter + скрипт mysql
    На pr-prometheus = 
    
 5) Приступаем к восстановлению конфигурации
-   1. На pr-nginx запустить configure_nginx.sh
-   2. На pr-backend-1 запустить install_wp_master.sh (если wordpress не установлен) после установки пройти по адресу http://192.168.1.241/ и зваершить настройку
-      или restore_master_from_backup.sh (если установлен и у нас есть дамп который положили в /home/toor/)
-      Потом запустить setup_master_gtid.sh для передачи файлов на slave
-   3. На pr-backend-2 запустить setup_slave_wp.sh
+   1. На pr-nginx запустить install_nginx.sh + install_filebeat.txt
+   2. На pr-backend-1 запустить 
+   3. На pr-backend-2 запустить 
