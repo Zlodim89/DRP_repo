@@ -21,6 +21,6 @@ Codname "Fast-restore"
    На pr-prometheus = 
    
 5) Приступаем к восстановлению конфигурации
-   1. На pr-nginx запустить install_nginx.sh + install_filebeat.txt
+   1. На pr-nginx запустить install_nginx.sh + install_filebeat.sh
    2. На pr-backend-1 запустить 
    3. На pr-backend-2 запустить 
